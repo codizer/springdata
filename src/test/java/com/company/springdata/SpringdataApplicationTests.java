@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,17 @@ class SpringdataApplicationTests {
 
 		if (optionalLibro.isPresent()) {
 			assertThat(optionalLibro.get().getTitulo(), equalTo("Java"));
+		}
+	}
+
+	@Test
+	void insertarUnoTest() {
+		Libro libro = new Libro("1F", "Python", "Alejandro", new Date(), 25.0);
+		repositoryLibro.save(libro);
+
+		Optional<Libro> optionalLibro = repositoryLibro.findById("1F");
+		if (optionalLibro.isPresent()) {
+			assertThat(optionalLibro.get().getTitulo(), equalTo("Python"));
 		}
 	}
 
