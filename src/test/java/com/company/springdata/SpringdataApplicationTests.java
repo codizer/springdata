@@ -7,8 +7,10 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 
 @SpringBootTest
@@ -26,6 +28,15 @@ class SpringdataApplicationTests {
 		it.forEach(miLista::add);
 
 		assertThat(miLista.size(), greaterThan(6));
+	}
+
+	@Test
+	void buscarUnoTest() {
+		Optional<Libro> optionalLibro = repositoryLibro.findById("1A");
+
+		if (optionalLibro.isPresent()) {
+			assertThat(optionalLibro.get().getTitulo(), equalTo("Java"));
+		}
 	}
 
 }
