@@ -22,7 +22,7 @@ public class SpringdataApplication {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/biblioteca");
 		dataSource.setUsername("root");
 		dataSource.setPassword("");
@@ -37,7 +37,7 @@ public class SpringdataApplication {
 		entityManagerFactoryBean.setPackagesToScan("com.company.springdata");
 
 		Properties jpaProperties = new Properties();
-		jpaProperties.put("hubernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 
 		entityManagerFactoryBean.setJpaProperties(jpaProperties);
 		return entityManagerFactoryBean;
