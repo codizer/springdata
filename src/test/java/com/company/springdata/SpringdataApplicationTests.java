@@ -14,6 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 
+
 @SpringBootTest
 @Sql({"/squema.sql", "/data.sql"})
 class SpringdataApplicationTests {
@@ -49,6 +50,15 @@ class SpringdataApplicationTests {
 		if (optionalLibro.isPresent()) {
 			assertThat(optionalLibro.get().getTitulo(), equalTo("Python"));
 		}
+	}
+
+	@Test
+	void borrarUnoTest() {
+		Libro libro = new Libro("1A");
+		repositoryLibro.delete(libro);
+		Optional<Libro> optionalLibro = repositoryLibro.findById("1A");
+		// assertFalse(optionalLibro.isPresent());
+		assertThat(optionalLibro.isPresent(), equalTo(false));
 	}
 
 }
