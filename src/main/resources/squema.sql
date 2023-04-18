@@ -5,5 +5,6 @@ CREATE TABLE libros (
     titulo varchar(25),
     autor varchar(25),
     fecha date,
-    precio double
+    precio double,
+    PRIMARY KEY (isbn)
 );
