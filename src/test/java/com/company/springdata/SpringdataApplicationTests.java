@@ -61,4 +61,15 @@ class SpringdataApplicationTests {
 		assertThat(optionalLibro.isPresent(), equalTo(false));
 	}
 
+	@Test
+	void buscarVariosTest() {
+		Iterable<Libro> it = repositoryLibro.findAllById(List.of("1A", "2A"));
+
+		List<Libro> miLista = new ArrayList<Libro>();
+		it.forEach(miLista::add);
+
+		assertThat(miLista.get(0).getTitulo(), equalTo("Java"));
+		assertThat(miLista.get(1).getTitulo(), equalTo("Net"));
+	}
+
 }
